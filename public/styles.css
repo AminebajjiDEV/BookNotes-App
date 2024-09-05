@@ -139,8 +139,8 @@
   display: flex;
   flex-direction: column;
   bottom: 0;
-  position: fixed;
-
+  position: relative;
+  z-index: 9999;
 }
 
 .section-rows {
@@ -184,7 +184,7 @@
     flex-direction: column;
     align-items: center;
 
-  
+
   }
 
   .section-rows {
@@ -192,7 +192,8 @@
     align-items: center;
   }
 
-  .section { /*All the sections(Contact,About & links) inside of sections*/
+  .section {
+    /*All the sections(Contact,About & links) inside of sections*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,3 +208,58 @@
 
 
 /*Footer Ending*/
+
+/*Home page beginning*/
+.home-container {
+  height:100vh; 
+  padding-bottom: 50px;
+}
+
+.container_header {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.website_description {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+}
+
+.website_description p {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.website_description h2 {
+  margin: 10px auto;
+}
+
+.app_title {
+  margin: 0 auto 5px;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.container_body {
+  padding: 10px;
+}
+
+/*Home page ending*/
+
+/*Book Cards beginning*/
+.card-body{
+  flex-direction: column;
+  align-items: center;
+}
+.card-link img{
+  margin-bottom: 10px;
+}
+/*Book Cards ending*/
