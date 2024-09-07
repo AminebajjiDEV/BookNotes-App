@@ -1,4 +1,4 @@
-/*Follow the order of queries for your DATABASE creation*/
+/*Follow this order of queries for your DATABASE creation*/
 CREATE TABLE genres (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE
