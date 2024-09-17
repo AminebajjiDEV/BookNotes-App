@@ -109,7 +109,7 @@ app.get("/byTitle", async (req, res) => { // get titles of read books by Alphabe
 })
 
 async function getWatchList() { // get books that are on watch list
-    const result = await db.query(`SELECT id, title, author, rating,  genre, isbn
+    const result = await db.query(`SELECT id, title, author, rating, genre, isbn
         FROM books
         WHERE is_in_watchlist = TRUE
         ORDER BY title ASC;`);
