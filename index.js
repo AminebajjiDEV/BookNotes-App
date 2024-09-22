@@ -26,6 +26,49 @@ app.set('view engine', 'ejs');
 
 
 
+// this URL is used for searching for all the informations of the book.
+const searchURL = "https://openlibrary.org/search.json";
+
+
+
+// SEARCH for books and their info from the Open Library using their API
+app.post("/search", async (req, res) => {
+    const book = req.body.input.trim();// used to eleminate unessecary/accidental spacing
+    if (!book || (typeof book !== 'string' && typeof book !== 'number')) { // the make sure the input isn't null
+        return res.status(400).send("Invalid input. Please enter a valid book title.");
+    }
+    console.log("Book name: ", book);
+    try {
+        const searchResponse = await axios.get(`${searchURL}?q=${encodeURIComponent(book)}`); // to get all the infos of a book only from the it's title
+
+        //here I Mapped the first book's data to a new object with only the fields I need which will enhance performace and response speed a LOT compared to getting the full response from OL API
+        const firstBook = searchResponse.data?.docs?.[0] && {
+            title: searchResponse.data.docs[0].title,
+            author_name: searchResponse.data.docs[0].author_name?.[0], // get first author
+            author_key: searchResponse.data.docs[0].author_key?.[0],   // get first author key for author picture
+            first_publish_year: searchResponse.data.docs[0].first_publish_year,
+            isbn: searchResponse.data.docs[0].isbn?.[3]                // get first ISBN for book cover
+        };
+        console.log("book isbn: ", firstBook.isbn);
+
+        if (!firstBook) {
+            return res.status(404).render("booksInfo.ejs", { error: "No book found by that entry. Please try again with a different book." });
+        }
+
+        res.render("booksInfo.ejs", {
+            searchResult: firstBook,
+            error: null,
+        });
+        console.log("Data sent to EJS:", { searchResult: firstBook });
+
+    } catch (err) {
+        console.error("Error fetching books data:", err);
+        res.status(500).render("booksInfo.ejs", { error: "No book found by that entry. Please try again with a different book." });
+    }
+})
+
+
+
 let error = "";
 async function getRead() { // get only read books by latest date
     const result = await db.query(
@@ -158,9 +201,6 @@ app.get("/genre", async (req, res) => { // get books by genre and display them b
         });
     }
 })
-
-
-
 
 app.use(async (req, res) => { // When a user searchs for a route that doesn't exist this error message will be displayed
     res.status(404).send("Could not find what you are looking for.")

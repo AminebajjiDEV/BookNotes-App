@@ -316,8 +316,8 @@
 
 .card {
   margin: 5px;
-  height: 620.5px;
-  width: 286.4px;
+  height: 620.5px !important;
+  width: 286.4px !important;
 }
 
 .card-body {
@@ -327,8 +327,8 @@
 
 .card-link img {
   margin-bottom: 10px;
-  max-width: 259.817px;
-  max-height: 364.35px;
+  max-width: 259.817px !important;
+  max-height: 364.35px !important;
 }
 
 /*Book Cards ending*/
