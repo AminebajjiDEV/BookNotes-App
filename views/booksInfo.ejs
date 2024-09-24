@@ -7,39 +7,57 @@
                 </div>
                 <% if (searchResult) { %>
                     <div class="website_description">
-                        <h2>You've Searched for <strong><%= searchResult.title %></strong> by <strong><%= searchResult.author_name %></strong></h2>
+                        <h2>You've Searched for <strong>
+                                <%= searchResult.title %>
+                            </strong> by <strong>
+                                <%= searchResult.author_name %>
+                            </strong></h2>
                         <strong>This page will provide you with some key information about this book.</strong>
                     </div>
             </header>
-            <div class="container_body">
-                <div class="book-cards row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2 g-md-3">
-                    <div class="col d-flex">
-                        <div class="card">
-                            <div class="card-body d-flex">
-                                <a class="card-link" href="/opinion">
-                                    <% if (searchResult.isbn) { %>
-                                        <img class="card-img"
-                                            src="https://covers.openlibrary.org/b/isbn/<%= searchResult.isbn %>-L.jpg"
-                                            alt="Cover image of <%= searchResult.title %>">
-                                    <% } else { %>
-                                        <img class="card-img" alt="No cover image available">
+            <div class="container_findBook">
+                <div class="card" id="book-info">
+                    <div class="info_body d-flex">
+                        <div class="info-link">
+                            <% if (searchResult.isbn) { %>
+                                <img class="card-img"
+                                    src="https://covers.openlibrary.org/b/isbn/<%= searchResult.isbn %>-L.jpg"
+                                    alt="Cover image of <%= searchResult.title %>">
+                                <% } else { %>
+                                    <img class="card-img" alt="No cover image available">
                                     <% } %>
-                                </a>
-                                <p class="card-text">
-                                    <%= searchResult.title %>
-                                </p>
-                                <p class="card-text">By <%= searchResult.author_name %></p>
-                            </div>
+                        </div>
+                        <div class="info-text">
+                            <h1 class="card-title">
+                                <%= searchResult.title %>
+                            </h1>
+
+                            <p class="card-text"><small class="text-muted">
+                                    <%=searchResult.subject%>
+                                </small>
+                            </p>
+                            <p class="card-text">Written By : <%= searchResult.author_name %>
+                            </p>
+                            <img class="auth-img"
+                                src="https://covers.openlibrary.org/a/olid/<%=searchResult.author_key%>-S.jpg"
+                                alt="image of <%= searchResult.author %>">
+                            <p class="card-text">Published in : <%= searchResult.first_publish_year%>
+                            </p>
+                            <p class="card-text">isbn : <%= searchResult.isbn%>
+                            </p>
+                            <p class="card-first_sentence">First sentence of the book : <%= searchResult.first_sentence%>
+                            </p>
                         </div>
                     </div>
                 </div>
                 <% } else { %>
                     <p>No book available.</p>
-                <% } %>
-                <% if (error) { %>
-                    <p>Error: <%= error %></p>
-                <% } %>
+                    <% } %>
+                        <% if (error) { %>
+                            <p>Error: <%= error %>
+                            </p>
+                            <% } %>
             </div>
         </section>
-    <%- include("partials/footer.ejs") %>
+        <%- include("partials/footer.ejs") %>
 </div>

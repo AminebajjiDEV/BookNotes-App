@@ -47,7 +47,9 @@ app.post("/search", async (req, res) => {
             author_name: searchResponse.data.docs[0].author_name?.[0], // get first author
             author_key: searchResponse.data.docs[0].author_key?.[0],   // get first author key for author picture
             first_publish_year: searchResponse.data.docs[0].first_publish_year,
-            isbn: searchResponse.data.docs[0].isbn?.[3]                // get first ISBN for book cover
+            isbn: searchResponse.data.docs[0].isbn?.[3],                // get fourth ISBN for book cover
+            subject: searchResponse.data.docs[0].subject?.[0],  //  get first subject which is the genre
+            first_sentence: searchResponse.data.docs[0].first_sentence?.[0], // get first sentence of the book
         };
         console.log("book isbn: ", firstBook.isbn);
 
