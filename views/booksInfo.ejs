@@ -19,15 +19,16 @@
                 <div class="card" id="book-info">
                     <div class="info_body d-flex">
                         <div class="info-link">
-                            <% if (searchResult.isbn) { %>
+                            <% if (searchResult.imageUrl) { %>
                                 <img class="card-img"
-                                    src="https://covers.openlibrary.org/b/isbn/<%= searchResult.isbn %>-L.jpg"
+                                    src="<%= searchResult.imageUrl %>"
                                     alt="Cover image of <%= searchResult.title %>">
                                 <% } else { %>
-                                    <img class="card-img" alt="No cover image available">
+                                    <img class="card-img"  src="images/image.png" alt="No cover image available">
                                     <% } %>
                         </div>
                         <div class="info-text">
+                        <div class="info-header-text">
                             <h1 class="card-title">
                                 <%= searchResult.title %>
                             </h1>
@@ -36,6 +37,8 @@
                                     <%=searchResult.subject%>
                                 </small>
                             </p>
+                        </div>
+                        <div class="info-body-text">
                             <p class="card-text">Written By : <%= searchResult.author_name %>
                             </p>
                             <img class="auth-img"
@@ -45,9 +48,8 @@
                             </p>
                             <p class="card-text">isbn : <%= searchResult.isbn%>
                             </p>
-                            <p class="card-first_sentence">First sentence of the book : <%= searchResult.first_sentence%>
-                            </p>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <% } else { %>

@@ -29,7 +29,20 @@ app.set('view engine', 'ejs');
 // this URL is used for searching for all the informations of the book.
 const searchURL = "https://openlibrary.org/search.json";
 
-
+// to verify if book image exists 
+async function checkImageUrl(isbn) {
+    const imageUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+    const fallbackImage = 'images/image.png'
+    try {
+        // Make a HEAD request to check if the image exists
+        const response = await axios.head(imageUrl);
+        // If the status is 200, the image exists
+        return response.status === 200 ? imageUrl : fallbackImage;
+    } catch (error) {
+        // If there is an error (e.g., 404), return false
+        return fallbackImage;
+    }
+}
 
 // SEARCH for books and their info from the Open Library using their API
 app.post("/search", async (req, res) => {
@@ -39,7 +52,7 @@ app.post("/search", async (req, res) => {
     }
     console.log("Book name: ", book);
     try {
-        const searchResponse = await axios.get(`${searchURL}?q=${encodeURIComponent(book)}`); // to get all the infos of a book only from the it's title
+        const searchResponse = await axios.get(`${searchURL}?q=${encodeURIComponent(book)}&limit=1`); // to get all the infos of a book only from the it's title
 
         //here I Mapped the first book's data to a new object with only the fields I need which will enhance performace and response speed a LOT compared to getting the full response from OL API
         const firstBook = searchResponse.data?.docs?.[0] && {
@@ -47,7 +60,7 @@ app.post("/search", async (req, res) => {
             author_name: searchResponse.data.docs[0].author_name?.[0], // get first author
             author_key: searchResponse.data.docs[0].author_key?.[0],   // get first author key for author picture
             first_publish_year: searchResponse.data.docs[0].first_publish_year,
-            isbn: searchResponse.data.docs[0].isbn?.[3],                // get fourth ISBN for book cover
+            isbn: searchResponse.data.docs[0].isbn?.[0],                // get fourth ISBN for book cover
             subject: searchResponse.data.docs[0].subject?.[0],  //  get first subject which is the genre
             first_sentence: searchResponse.data.docs[0].first_sentence?.[0], // get first sentence of the book
         };
@@ -57,8 +70,12 @@ app.post("/search", async (req, res) => {
             return res.status(404).render("booksInfo.ejs", { error: "No book found by that entry. Please try again with a different book." });
         }
 
+        // Get valid image URL or fallback image
+        const imageUrl = await checkImageUrl(firstBook.isbn);
+
+
         res.render("booksInfo.ejs", {
-            searchResult: firstBook,
+            searchResult: {...firstBook, imageUrl},
             error: null,
         });
         console.log("Data sent to EJS:", { searchResult: firstBook });
