@@ -75,7 +75,7 @@ app.post("/search", async (req, res) => {
 
 
         res.render("booksInfo.ejs", {
-            searchResult: {...firstBook, imageUrl},
+            searchResult: { ...firstBook, imageUrl },
             error: null,
         });
         console.log("Data sent to EJS:", { searchResult: firstBook });
@@ -220,6 +220,34 @@ app.get("/genre", async (req, res) => { // get books by genre and display them b
         });
     }
 })
+
+
+app.get("/opinion", async (req, res) => {
+    try {
+        const selectedId = req.query.id; // extracting the book id from the query params to help identify the book and search for the users opinion on the db.
+
+        const result = await db.query(`SELECT id, title, author, rating, genre, isbn, opinion 
+            FROM books
+            WHERE id = $1;`, [selectedId]); // passing the book id as a param to prevent SQL injection as a good practice
+
+        const opinionResults = result.rows;
+        console.log("Book opinion data is : ", opinionResults)
+
+        res.render("bookReview.ejs", {
+            book: opinionResults[0],// to access the first book of the array so the data can be displayed on my EJS file. PS: i'm still trying to figure out why i should use the [0] even tho it's only returning one book.
+            error: null
+        });
+
+
+    } catch (err) {
+        console.error("Error fetching books:", err);
+        res.render("index.ejs", {
+            books: [],
+            error: "Sorry I haven't written an opinion for this book just yet."
+        });
+    }
+})
+
 
 app.use(async (req, res) => { // When a user searchs for a route that doesn't exist this error message will be displayed
     res.status(404).send("Could not find what you are looking for.")

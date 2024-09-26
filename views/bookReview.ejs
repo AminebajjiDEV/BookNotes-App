@@ -1,82 +1,89 @@
-<div class="site"></div>
+<div class="site">
     <%- include("partials/header.ejs") %>
+
         <section class="home-container">
             <header class="container_header">
                 <div class="app_title">
-                    <h1>Books I've Read</h1>
+                    <h1>book I've Read</h1>
                 </div>
-                <div class="website_description">
-                    <h2>Welcome to my Book Notes Website!</h2>
-                    <p>Tiny summary but detailed notes for each book I've read.
-                         <strong>This page will constantly update as I read more, so bookmark it if you want to check back in a few months.</strong></p>
-                </div>
+                <% if (book) { %>
+                    <div class="website_description">
+                        <h2>Welcome to my Book Notes Website!</h2>
+                        <p>Tiny summary but detailed notes for each book I've read.
+                            <strong>This page will constantly update as I read more, so bookmark it if you want to check
+                                back in a few months.</strong>
+                        </p>
+                    </div>
             </header>
             <div class="container_body">
+                <div class="card" id="book-opinion">
+                    <div class="opinion-body d-flex">
+                        <div class="opinion-link">
+                            <a class="card-link">
+                                <img class="card-img" src="https://covers.openlibrary.org/b/isbn/<%=book.isbn%>-L.jpg"
+                                    alt="title">
+                            </a>
+                        </div>
+                        <div class="opinion-text">
+                            <div class="opinion-header-text">
+                                <h1 class="card-title">
+                                    <%= book.title %>
+                                </h1>
 
-                <% if (books && books.length> 0) { %>
-
-                    <div class="book-cards row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2 g-md-3">
-                        <% books.forEach(function(book) { %>
-                            <div class="col d-flex">
-                                <div class="card">
-                                    <div class="card-body d-flex">
-                                        <a class="card-link" href="/opinion">
-                                            <img class="card-img"
-                                                src="https://covers.openlibrary.org/b/isbn/<%=book.isbn%>-L.jpg"
-                                                alt="title">
-                                        </a>
-                                        <p class="card-text">
-                                            <%= book.title%>
-                                        </p>
-                                        <p class="card-text">By <%= book.author %>
-                                        </p>
-                                        <p class="card-text"><small class="text-muted">Genre : <%=book.genre%></small>
-                                        </p>
-                                        <!--Rating-->
-                                        <p class=" rating">
-                                            <% for(var j=0;j<Math.floor(book.rating);j++){ %>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill=#FFC10F class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                </svg>
-                                                <% } %>
-                                                    <% if(book.rating - Math.floor(book.rating)) {%>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill=#FFC10F class="bi bi-star-half" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z" />
-                                                        </svg>
-                                                        <% } %>
-                                                            <% for(var j=0;j<5-Math.round((book.rating));j++){ %>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                    height="16" fill=#FFC10F class="bi bi-star"
-                                                                    viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
-                                                                </svg>
-                                                                <% } %>
-                                        </p>
-                                        <!--Rating end-->
-                                        </a>
-                                        <a href="/opinion" class="btn btn-primary mt-auto">My
-                                            Opinion</a>
-                                    </div>
-
-                                </div>
+                                <p class="card-text"><small class="text-muted">
+                                        <%=book.genre%>
+                                    </small>
+                                </p>
                             </div>
-
-                            <% }); %>
+                            <div class="opinion-body-text">
+                                <p class="card-text">Written By : <%= book.author %>
+                                </p>
+                                <p class="card-text">isbn : <%= book.isbn%>
+                                </p>
+                            </div>
+                            <div class="my_opinion">
+                                <Strong>My Opinion of this book :</Strong>
+                                <p>
+                                    <%=book.opinion%>
+                                </p>
+                            </div>
+                            <!--Rating-->
+                            <p class=" rating">
+                                <% for(var j=0;j<Math.floor(book.rating);j++){ %>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=#FFC10F
+                                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                    <% } %>
+                                        <% if(book.rating - Math.floor(book.rating)) {%>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=#FFC10F
+                                                class="bi bi-star-half" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z" />
+                                            </svg>
+                                            <% } %>
+                                                <% for(var j=0;j<5-Math.round((book.rating));j++){ %>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill=#FFC10F class="bi bi-star" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                                                    </svg>
+                                                    <% } %>
+                            </p>
+                            <!--Rating end-->
+                            </a>
+                        </div>
+                        
                     </div>
                     <% } else { %>
-                        <p>No read books available.</p>
+                        <p>No read book available.</p>
                         <% } %>
                             <% if (error) { %>
                                 <p>Error: <%= error %>
                                 </p>
                                 <% } %>
-
-            </div>
+                </div>
 
         </section>
         <%- include("partials/footer.ejs") %>
