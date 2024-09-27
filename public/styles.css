@@ -342,9 +342,6 @@ button {
 /*books Info begining*/
 .container_findBook {
   padding: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .info_body {
@@ -360,14 +357,19 @@ button {
   width: 100%;
 }
 
+.info-link{
+  width: 60%;
+}
+
 .info-text {
 display: flex;
 flex-direction: column;
+align-items: center;
 }
 
 .info-header-text {
-  max-width: 355px;
-  margin: 30px;
+  width: 400px;
+  margin: 10px 30px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -384,6 +386,13 @@ flex-direction: column;
   font-weight: bold;
 }
 
+.info-body-text-p{
+  display: flex;
+  flex-direction: row;
+}
+.info-body-text p {
+  margin: 5px;
+}
 
 .auth-img{
   max-width: 42px !important;
@@ -400,3 +409,26 @@ flex-direction: column;
 }
 
 /*books Info ending*/
+
+/*Book Review Begining*/
+.opinion-body{
+  padding: 20px;
+}
+.opinion-text{
+  width: 100%;
+  padding: 5px 20px;
+}
+.opinion-header-text{
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 10px;
+}
+.opinion-body-text{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  font-weight: 501;
+}
+/*Book Review Ending*/

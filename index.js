@@ -3,6 +3,7 @@ import axios from "axios";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import pg from "pg";
+import pixels from 'image-pixels';
 
 dotenv.config();
 const app = express();
@@ -30,18 +31,16 @@ app.set('view engine', 'ejs');
 const searchURL = "https://openlibrary.org/search.json";
 
 // to verify if book image exists 
-async function checkImageUrl(isbn) {
+async function checkImageUrl(isbn){
+
     const imageUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
-    const fallbackImage = 'images/image.png'
-    try {
-        // Make a HEAD request to check if the image exists
-        const response = await axios.head(imageUrl);
-        // If the status is 200, the image exists
-        return response.status === 200 ? imageUrl : fallbackImage;
-    } catch (error) {
-        // If there is an error (e.g., 404), return false
+    const fallbackImage = 'images/image.png';
+    const { width , height } = await pixels(imageUrl); // return width,height in PX
+    if(width < 100){
         return fallbackImage;
     }
+    return imageUrl
+    
 }
 
 // SEARCH for books and their info from the Open Library using their API

@@ -20,36 +20,46 @@
                     <div class="info_body d-flex">
                         <div class="info-link">
                             <% if (searchResult.imageUrl) { %>
-                                <img class="card-img"
-                                    src="<%= searchResult.imageUrl %>"
+                                <img class="card-img" src="<%= searchResult.imageUrl %>"
                                     alt="Cover image of <%= searchResult.title %>">
                                 <% } else { %>
-                                    <img class="card-img"  src="images/image.png" alt="No cover image available">
+                                    <img class="card-img" src="images/image.png" alt="No cover image available">
                                     <% } %>
                         </div>
                         <div class="info-text">
-                        <div class="info-header-text">
-                            <h1 class="card-title">
-                                <%= searchResult.title %>
-                            </h1>
+                            <div class="info-header-text">
+                                <h1 class="card-title">
+                                    <%= searchResult.title %>
+                                </h1>
 
-                            <p class="card-text"><small class="text-muted">
-                                    <%=searchResult.subject%>
-                                </small>
-                            </p>
+                                <p class="card-text"><small class="text-muted">
+                                        <%=searchResult.subject%>
+                                    </small>
+                                </p>
+                            </div>
+                            <div class="info-body-text">
+                                <p class="card-text">Written By : <%= searchResult.author_name %>
+                                </p>
+                                <img class="auth-img"
+                                    src="https://covers.openlibrary.org/a/olid/<%=searchResult.author_key%>-S.jpg"
+                                    alt="image of <%= searchResult.author %>">
+
+                                <div class="info-body-text-p">
+                                    <p class="card-text">Published in : <%= searchResult.first_publish_year%>
+                                    </p>
+                                    <p class="card-text">isbn : <%= searchResult.isbn%>
+                                    </p>
+                                </div>
+
+                                <div class="card-text">
+                                    <% if (searchResult.first_sentence != undefined) { %>
+                                       <p>First Sentence : <%=searchResult.first_sentence%></p> 
+                                        <% } else { %>
+                                            <p>First Sentence : No First Sentence available!</p>
+                                            <% } %>
+                                        </div>
+                            </div>
                         </div>
-                        <div class="info-body-text">
-                            <p class="card-text">Written By : <%= searchResult.author_name %>
-                            </p>
-                            <img class="auth-img"
-                                src="https://covers.openlibrary.org/a/olid/<%=searchResult.author_key%>-S.jpg"
-                                alt="image of <%= searchResult.author %>">
-                            <p class="card-text">Published in : <%= searchResult.first_publish_year%>
-                            </p>
-                            <p class="card-text">isbn : <%= searchResult.isbn%>
-                            </p>
-                        </div>
-                    </div>
                     </div>
                 </div>
                 <% } else { %>
