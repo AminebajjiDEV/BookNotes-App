@@ -6,6 +6,17 @@
   background-image: url(images/bg.svg);
 }
 
+@media (max-width: 900px) {
+  .site {
+    height: 100%;
+    width: 100%;
+    background-image: url(images/bg.svg);
+    background-repeat: repeat-x;
+  }
+}
+
+
+
 
 /*svg shape divider TOP*/
 .custom-shape-divider-top-1726554653 {
@@ -235,7 +246,7 @@ button {
 
 /*Media queires for extra footer responsivness for most of the screens*/
 
-@media (max-width: 993px) {
+@media (max-width: 900px) {
   .copyright-text {
     display: flex;
     flex-direction: column;
@@ -306,12 +317,29 @@ button {
   text-align: center;
 }
 
-
 .container_body {
-  padding: 100px;
+  padding: 70px;
 }
 
 /*Home page ending*/
+
+/*Media query for home page responsivness*/
+@media (max-width: 950px) {
+  .home-container {
+    padding: 10px;
+  }
+
+  .container_body {
+    padding: 0;
+  }
+  .website_description {
+    text-align: center;
+  }
+  .website_description p {
+    width: 100%;
+  }
+}
+
 
 /*Book Cards beginning*/
 .book-cards {
@@ -321,8 +349,8 @@ button {
 
 #book-card {
   margin: 5px;
-  height: 620.5px !important;
-  width: 286.4px !important;
+  height: 620.5px;
+  width: 286.4px;
 }
 
 .card-body {
@@ -338,6 +366,14 @@ button {
 
 /*Book Cards ending*/
 
+/*Media Queary for books cards*/
+@media (max-width: 950px) {
+  #book-card {
+    height: 100%;
+    width: 100%;
+  }
+  
+}
 
 /*books Info begining*/
 .container_findBook {
@@ -357,14 +393,14 @@ button {
   width: 100%;
 }
 
-.info-link{
+.info-link {
   width: 60%;
 }
 
 .info-text {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .info-header-text {
@@ -376,6 +412,7 @@ align-items: center;
   font-size: larger;
   font-weight: bold;
 }
+
 .info-body-text {
   max-width: 355px;
   margin: 30px;
@@ -386,17 +423,18 @@ align-items: center;
   font-weight: bold;
 }
 
-.info-body-text-p{
+.info-body-text-p {
   display: flex;
   flex-direction: row;
 }
+
 .info-body-text p {
   margin: 5px;
 }
 
-.auth-img{
+.auth-img {
   max-width: 42px !important;
-  max-height: 58px !important ;
+  max-height: 58px !important;
   margin: 3px;
 }
 
@@ -404,31 +442,35 @@ align-items: center;
   margin-bottom: 10px;
 }
 
-.card-first_sentence{
+.card-first_sentence {
   width: 50%;
 }
 
 /*books Info ending*/
 
 /*Book Review Begining*/
-.opinion-body{
+.opinion-body {
   padding: 20px;
 }
-.opinion-text{
+
+.opinion-text {
   width: 100%;
   padding: 5px 20px;
 }
-.opinion-header-text{
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 10px;
+
+.opinion-header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
 }
-.opinion-body-text{
+
+.opinion-body-text {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   font-weight: 501;
 }
+
 /*Book Review Ending*/

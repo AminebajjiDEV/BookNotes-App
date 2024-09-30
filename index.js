@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 // this URL is used for searching for all the informations of the book.
 const searchURL = "https://openlibrary.org/search.json";
 
-// to verify if book image exists 
+// to verify if book cover image exists 
 async function checkImageUrl(isbn){
 
     const imageUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
