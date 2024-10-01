@@ -12,10 +12,10 @@
                             </strong> by <strong>
                                 <%= searchResult.author_name %>
                             </strong></h2>
-                        <strong>This page will provide you with some key information about this book.</strong>
+                        <p> <strong>This page will provide you with some key information about this book.</strong></p>
                     </div>
             </header>
-            <div class="container_findBook">
+            <div class="container_body">
                 <div class="card" id="book-info">
                     <div class="info_body d-flex">
                         <div class="info-link">
@@ -52,12 +52,13 @@
                                 </div>
 
                                 <div class="card-text">
-                                    <% if (searchResult.first_sentence != undefined) { %>
-                                       <p>First Sentence : <%=searchResult.first_sentence%></p> 
+                                    <% if (searchResult.first_sentence !=undefined) { %>
+                                        <p><strong>First Sentence : </strong><%=searchResult.first_sentence%>
+                                        </p>
                                         <% } else { %>
-                                            <p>First Sentence : No First Sentence available!</p>
+                                            <p><strong>First Sentence : </strong>No First Sentence available!</p>
                                             <% } %>
-                                        </div>
+                                </div>
                             </div>
                         </div>
                     </div>

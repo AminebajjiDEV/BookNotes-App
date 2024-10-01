@@ -3,16 +3,9 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: minmax(0, 1fr);
-  background-image: url(images/bg.svg);
-}
-
-@media (max-width: 900px) {
-  .site {
-    height: 100%;
-    width: 100%;
-    background-image: url(images/bg.svg);
-    background-repeat: repeat-x;
-  }
+  background-image: url(images/bg.jpg);
+  background-repeat: round;
+  background-size: cover;
 }
 
 
@@ -321,6 +314,10 @@ button {
   padding: 70px;
 }
 
+.no-read {
+  margin: 20px;
+}
+
 /*Home page ending*/
 
 /*Media query for home page responsivness*/
@@ -332,9 +329,11 @@ button {
   .container_body {
     padding: 0;
   }
+
   .website_description {
     text-align: center;
   }
+
   .website_description p {
     width: 100%;
   }
@@ -372,7 +371,7 @@ button {
     height: 100%;
     width: 100%;
   }
-  
+
 }
 
 /*books Info begining*/
@@ -389,7 +388,6 @@ button {
 
 #book-info {
   padding: 10px;
-  margin: 5px;
   width: 100%;
 }
 
@@ -401,6 +399,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .info-header-text {
@@ -420,7 +419,7 @@ button {
   flex-direction: column;
   align-items: center;
   font-size: larger;
-  font-weight: bold;
+  font-weight: 501;
 }
 
 .info-body-text-p {
@@ -446,9 +445,26 @@ button {
   width: 50%;
 }
 
+@media (max-width: 950px) {
+  .info_body {
+    flex-direction: column;
+    align-items: center;
+  }
+  .info-header-text {
+    width: 100%;
+    margin: auto;
+  }
+
+  .info-body-text-p {
+    flex-direction: column;
+    text-align: center;
+  }
+
+}
+
 /*books Info ending*/
 
-/*Book Review Begining*/
+/*Book Opinion Begining*/
 .opinion-body {
   padding: 20px;
 }
@@ -462,7 +478,11 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
+  margin: 10px 10px 40px;
+}
+
+.opinion-header-text h1 {
+  margin-bottom: 20px;
 }
 
 .opinion-body-text {
@@ -473,4 +493,19 @@ button {
   font-weight: 501;
 }
 
-/*Book Review Ending*/
+@media (max-width: 950px) {
+  .opinion-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .opinion-text {
+    text-align: center;
+  }
+
+  .opinion-body-text {
+    flex-direction: column;
+  }
+}
+
+/*Book Opinion Ending*/
