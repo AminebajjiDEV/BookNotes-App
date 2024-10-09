@@ -7,6 +7,7 @@ CREATE TABLE books (
     read_at TIMESTAMP,
     is_in_watchlist BOOLEAN DEFAULT FALSE,
     isbn VARCHAR(20),
+    genre VARCHAR(255),
     opinion text,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -23,7 +24,7 @@ VALUES
     ('The Obstacle is the Way', 'Ryan Holiday', 5, '2023-07-30 13:45:00', TRUE, FALSE, '9781591846352', 'Self Help', 'Ryan Holiday brilliantly applies the ancient Stoic philosophy of turning obstacles into opportunities. With practical examples and historical anecdotes, this book offers an actionable approach to handling challenges, giving readers the tools to cultivate a more resilient mindset and a calm attitude in the face of adversity.'),
     
     -- Autobiography
-    ('Man\'s Search for Meaning', 'Viktor Frankl', 5, '2023-09-10 16:00:00', TRUE, FALSE, '9780807014295', 'Autobiography', 'This powerful memoir by Viktor Frankl is a profound reflection on how to find meaning in the darkest of times. Surviving the Holocaust, Frankl emphasizes that life’s hardships can be endured if we focus on meaning and purpose, a message that deeply resonates with stoic ideals of inner strength and perspective.'),
+    ('Man''s Search for Meaning', 'Viktor Frankl', 5, '2023-09-10 16:00:00', TRUE, FALSE, '9780807014295', 'Autobiography', 'This powerful memoir by Viktor Frankl is a profound reflection on how to find meaning in the darkest of times. Surviving the Holocaust, Frankl emphasizes that life’s hardships can be endured if we focus on meaning and purpose, a message that deeply resonates with stoic ideals of inner strength and perspective.'),
     
     -- Science
     ('Cosmos', 'Carl Sagan', 4, '2023-08-01 19:00:00', TRUE, FALSE, '9780345331359', 'Science', 'Carl Sagan’s monumental work explores the wonders of the universe, encouraging readers to think beyond the confines of their personal lives and see their place in the vastness of the cosmos. For a stoic, this book offers a humbling perspective on the insignificance of individual problems compared to the grand scale of existence.'),
