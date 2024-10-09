@@ -1,4 +1,4 @@
-# BookNotes App 📚
+# BookNotes App 📚 Hosted Live on Render.com!
 
 This is a web app where users can search for books, retrieve information via the Open Library API, and they can also manage their personal book collection. It allows users to view their "already read" books with their opinion and order them by rating, title, or genre, and explore books from their watchlist. The app also fetches information about each book, such as its cover image, author, isbn, publishing date, title and genre using the Open Library API.
 
