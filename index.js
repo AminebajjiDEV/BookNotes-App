@@ -74,8 +74,8 @@ app.post("/search", async (req, res) => {
 
 
         res.render("booksInfo.ejs", {
-            searchResult: { ...firstBook, imageUrl },
-            error: null,
+            searchResult: firstBook ? { ...firstBook, imageUrl } : null, // to verify if the first book exists or not
+            error: firstBook ? null : "No book found by that entry. Please try again.",
         });
         console.log("Data sent to EJS:", { searchResult: firstBook });
 
