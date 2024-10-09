@@ -2,6 +2,8 @@
 
 This is a web app where users can search for books, retrieve information via the Open Library API, and they can also manage their personal book collection. It allows users to view their "already read" books with their opinion and order them by rating, title, or genre, and explore books from their watchlist. The app also fetches information about each book, such as its cover image, author, isbn, publishing date, title and genre using the Open Library API.
 
+<img src = "public/images/Screenshot 2024-10-08 at 16-53-17 Books I've Read.png" style = "float: left"/>
+
 ## Features
 
 - **Search for books** using the Open Library API
@@ -90,6 +92,12 @@ The PostgreSQL database should have the following schema for storing book inform
   - **Personal Book Collection:** Browse your personal collection of read books and books in your watchlist.
   - **Sort Books:** View your books by rating, title, or genre.
   - **User Opinions:** View personal opinions on books from your collection.
+    
+    ### App Usage screenshots:
+    - **Sort by Genre** :
+<img src = "public/images/sc2.png" style = "float: left"/>
+
+
 
   ## Issues and Resolutions
   ### Book Cover Image Issue
@@ -116,13 +124,17 @@ Here is a code snippet that handles this:
    ```
 **This ensures a fallback image is displayed when the Open Library API returns an invalide cover image.**
 
+**Screenshot:**
+
+<img src = "public/images/sc.png" style = "float: left"/>
+
 ## Acknowledgments
 
 the following resources helped in the development of this project:
 
    - **npm:** For providing essential packages such as image-pixels for verifying the book cover image size.
 
-   - **Stack** Overflow: For the amazing comunity that helped me find a solution that guided me when resolving the book cover image size issue.
+   - **Stack Overflow:** For the amazing comunity that helped me find a solution that guided me when resolving the book cover image size issue.
 
    - **W3Schools:** For providing clear and comprehensive resources on SQL queries, which helped me implement efficient database interactions with PostgreSQL.
 
